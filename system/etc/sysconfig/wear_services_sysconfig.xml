@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <!-- For updating complication and watch face in ambient for non-offloadable watch faces. -->
+  <allow-in-power-save package="com.google.wear.services" />
+
+  <!-- Implements the Wear SDK backend, depends on the hidden AIDL generated code. -->
+  <hidden-api-whitelisted-app package="com.google.wear.services" />
+</config>

@@ -1,0 +1,30 @@
+
+on boot
+  mkdir /data/oppo 0777 system system
+  mkdir /data/oppo/common 0777 system system
+  mkdir /data/oppo/common/diaglog 0775 system system
+  mkdir /data/screenshots 0777 system system
+
+on property:sys.oppo.system.reboot=1
+    write /proc/switch/lcd 1
+    write /proc/switch/mt 1
+    write /sys/devices/platform/soc/soc:gpio_keys/disabled_keys 0
+    write /sys/devices/platform/soc/1c40000.qcom,spmi/spmi-0/0-00/1c40000.qcom,spmi:qcom,pm5100@0:pon_hlos@1300/disable_key 0
+    setprop sys.oppo.system.reboot 0
+
+on post-fs-data
+    mkdir /data/oplusreserve 0777 system system
+    mkdir /data/oplusreserve/media 0777 system system
+    mkdir /data/oplusreserve/media/log 0777 system system
+    mkdir /data/oplusreserve/media/log/shutdown 0777 system system
+    mkdir /data/oplusreserve/media/log/hang  0777 system system
+    mkdir /data/oplusreserve/media/log/poweron  0777 system system
+    mkdir /mnt/vendor/oplusreserve/ 0777 system system
+    mkdir /mnt/vendor/oplusreserve/media 0777 system system
+    mkdir /mnt/vendor/oplusreserve/media/log 0777 system system
+    mkdir /mnt/vendor/oplusreserve/media/log/shutdown  0777 system system
+    mkdir /mnt/vendor/oplusreserve/media/log/hang  0777 system system
+    mkdir /mnt/vendor/oplusreserve/media/log/poweron  0777 system system
+    restorecon_recursive /mnt/vendor/oplusreserve
+    restorecon_recursive  /data/oplusreserve
+    mount ext4 /mnt/vendor/oplusreserve/media/log  /data/oplusreserve/media/log bind

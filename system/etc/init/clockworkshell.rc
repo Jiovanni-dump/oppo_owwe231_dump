@@ -1,0 +1,4 @@
+on post-fs-data
+    # Init clockwork shell data folders.
+    mkdir /data/vendor/clockworkshell 0740 shell system
+    restorecon /data/vendor/clockworkshell

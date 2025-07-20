@@ -1,0 +1,5 @@
+<config>
+    <!-- Indicates that the device contains Google-managed version of the
+    DWF runtime which will be distributed via Play Store. -->
+    <feature name="com.google.clockwork.watchface.runtime" />
+</config>

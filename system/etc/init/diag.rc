@@ -1,0 +1,42 @@
+#***********************************************************
+#* Copyright (C), 2008-2021, OPPO Mobile Comm Corp., Ltd.
+#* WATCH_EDIT
+#* File: diag.rc
+#* Description: diag init rc.file
+#* Version: 1.0
+#* Date : 2021/04/02
+#* Author: zhangxiaowei@wear.Android.Framework.Diag
+#*
+#* ---------------------Revision History: ---------------------
+#*  <author>      <data>    <version >   <desc>
+#* zhangxiaowei 2021/04/02     1.0     build this module
+#***************************************************************/
+
+service transfer_stamp /system/bin/sh /system/bin/diag.sh "transfer_stamp"
+    user root
+    disabled
+    oneshot
+    seclabel u:r:installd:s0
+
+on property:persist.sys.diag.transfer.stamp=true
+    start transfer_stamp
+
+service transfer_log /system/bin/sh /system/bin/diag.sh "transfer_log"
+    user root
+    disabled
+    oneshot
+    seclabel u:r:installd:s0
+
+on property:persist.sys.diag.transfer.log=true
+    start transfer_log
+
+service powerlog /system/bin/sh /system/bin/diag.sh "powerlog"
+    user root
+    disabled
+    oneshot
+    seclabel u:r:installd:s0
+
+on property:persist.sys.transfer.powerlog=true
+    start powerlog
+
+

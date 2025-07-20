@@ -1,0 +1,34 @@
+service bootanim /system/bin/bootanimation
+    class core animation
+    user graphics
+    group graphics audio system
+    disabled
+    oneshot
+    ioprio rt 0
+    task_profiles MaxPerformance
+service prebootanim /system/bin/bootanimation -p
+    class core animation
+    user root
+    priority -10
+    group media graphics audio
+    socket animation seqpacket 0660 system system
+    disabled
+    oneshot
+service rbootanim /system/bin/bootanimation -r
+    class core animation
+    user root
+    priority -10
+    group graphics audio media
+    disabled
+    oneshot
+
+service wristbandanim /system/bin/bootanimation -w
+    class core animation
+    user root
+    group graphics audio media
+    disabled
+    oneshot
+
+on boot
+    chmod 0666 /sys/class/backlight/panel0-backlight/brightness
+

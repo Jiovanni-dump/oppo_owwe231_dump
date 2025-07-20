@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Contains the privapp-permissions for WearServices package. -->
+<permissions>
+  <privapp-permissions package="com.google.wear.services">
+    <permission name="android.permission.CHANGE_CONFIGURATION"/>
+    <permission name="android.permission.SET_WALLPAPER_COMPONENT"/>
+    <permission name="android.permission.READ_SMS"/>
+    <permission name="android.permission.SEND_SMS"/>
+    <permission name="android.permission.RECEIVE_SMS"/>
+    <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <permission name="android.permission.BIND_TELECOM_CONNECTION_SERVICE"/>
+    <permission name="android.permission.MODIFY_PHONE_STATE"/>
+    <permission name="android.permission.REGISTER_SIM_SUBSCRIPTION"/>
+    <permission name="android.permission.BLUETOOTH_PRIVILEGED"/>
+    <permission name="android.permission.STOP_APP_SWITCHES"/>
+    <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+    <permission name="com.android.setupwizard.permission.PAIRED_PHONE_CHANGED"/>
+    <permission name="android.permission.REQUEST_COMPANION_SELF_MANAGED" />
+    <permission name="android.permission.OBSERVE_GRANT_REVOKE_PERMISSIONS" />
+    <permission name="android.permission.ACTIVITY_RECOGNITION" />
+    <permission name="android.permission.BODY_SENSORS" />
+  </privapp-permissions>
+</permissions>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<exceptions>
+    <exception package="com.google.wear.watchface.runtime">
+        <permission name="android.permission.ACTIVITY_RECOGNITION" fixed="false"/>
+        <permission name="android.permission.BODY_SENSORS" fixed="false"/>
+        <permission name="android.permission.BODY_SENSORS_BACKGROUND" fixed="false"/>
+    </exception>
+</exceptions>

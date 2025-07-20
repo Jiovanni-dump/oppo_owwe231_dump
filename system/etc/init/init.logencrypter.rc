@@ -1,0 +1,19 @@
+#/***********************************************************
+#** Copyright (C), 2008-2019, OPPO Mobile Comm Corp., Ltd.
+#** WEAROS_EDIT
+#** File: init.ota.rc
+#** Description:
+#**
+#** Version: 1.0
+#** Date : 2020/08/14
+#** Author: Xu.Yang@Wear.Android.Init
+#**
+#** ---------------------Revision History: ---------------------
+#**  <author>     <data>    <version >    <desc>
+#**    Xu.Yang     2020/08/14    1.0     build this module
+#****************************************************************/
+
+on post-fs-data
+    mkdir /data/oppo 0777 system system
+    mkdir /data/oppo/log/ 0755 system system
+    mkdir /data/system/dropbox/ 0755 system system

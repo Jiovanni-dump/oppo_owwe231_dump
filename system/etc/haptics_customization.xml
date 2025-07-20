@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<customizations>
+  <customization constant="18">
+    <primitive id="7" scale="1" delay="0" />
+  </customization>
+  <customization constant="20">
+    <primitive id="1" scale="0.5" delay="0" />
+  </customization>
+  <customization constant="1">
+    <primitive id="7" scale="1" delay="0" />
+  </customization>
+  <customization constant="3">
+    <primitive id="7" scale="1" delay="0" />
+  </customization>
+  <customization constant="16">
+    <primitive id="2" scale="1" delay="0" />
+    <primitive id="2" scale="1" delay="100" />
+  </customization>
+  <customization constant="17">
+    <primitive id="2" scale="1" delay="0" />
+    <primitive id="2" scale="1" delay="100" />
+    <primitive id="2" scale="1" delay="100" />
+    <primitive id="2" scale="1" delay="100" />
+  </customization>
+</customizations>

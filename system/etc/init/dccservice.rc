@@ -1,0 +1,10 @@
+service deamonserver /system/bin/dccservice
+    class core
+    user system
+    onrestart restart zygote
+
+on post-fs-data
+    chmod 0664 /dev/dcc_data
+    chmod 0664 /dev/dcc_datah
+    chown system /dev/dcc_data
+    chown system /dev/dcc_datah

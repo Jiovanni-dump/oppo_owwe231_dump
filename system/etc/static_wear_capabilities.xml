@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wear_capabilities>
+	<package name="com.android.adservices.api">
+	</package>
+	<package name="com.google.android.wearable.assistant">
+	</package>
+	<package name="com.oppo.bttestmode">
+	</package>
+	<package name="com.android.backupconfirm">
+	</package>
+	<package name="com.android.providers.blockednumber">
+	</package>
+	<package name="com.android.bluetooth">
+	</package>
+	<package name="com.android.providers.calendar">
+	</package>
+	<package name="com.android.certinstaller">
+	</package>
+	<package name="com.google.android.wearable.frameworkpackagestubs">
+	</package>
+	<package name="com.google.android.clockwork.oemsetup">
+	</package>
+	<package name="com.google.android.dialer">
+		<capability name="dialer_wear"/>
+	</package>
+	<package name="com.google.android.apps.wearable.settings">
+	</package>
+	<package name="com.android.shell">
+	</package>
+	<package name="com.oplus.wearable.sysui">
+	</package>
+	<package name="com.google.android.wearable.app">
+		<capability name="handle_remote_intent_watch"/>
+		<capability name="ios_sms_reply"/>
+		<capability name="toggle_autolaunch_media_controls"/>
+		<capability name="/tiles/capability/home"/>
+		<capability name="/account/capability/watch/account_apis"/>
+		<capability name="/audit_recording/capability/watch/add_session_id"/>
+		<capability name="call_v2_capability"/>
+	</package>
+	<package name="com.android.providers.contacts">
+	</package>
+	<package name="com.android.cts.ctsshim">
+	</package>
+	<package name="com.android.cts.priv.ctsshim">
+	</package>
+	<package name="com.google.android.clockwork.font.sandbox.impl">
+	</package>
+	<package name="com.google.wear.watchface.runtime">
+	</package>
+	<package name="com.android.providers.downloads">
+	</package>
+	<package name="com.android.externalstorage">
+	</package>
+	<package name="com.android.location.fused">
+	</package>
+	<package name="com.google.android.contacts">
+		<capability name="has_wear_contacts_app"/>
+	</package>
+	<package name="com.google.android.ext.services">
+	</package>
+	<package name="com.google.android.ext.shared">
+	</package>
+	<package name="com.google.android.packageinstaller">
+	</package>
+	<package name="com.google.android.permissioncontroller">
+	</package>
+	<package name="com.google.android.tts">
+	</package>
+	<package name="com.heytap.accessory">
+	</package>
+	<package name="com.heytap.wearable.altitude">
+	</package>
+	<package name="com.google.android.calendar">
+	</package>
+	<package name="com.heytap.wearable.clock">
+	</package>
+	<package name="com.heytap.wearable.compass">
+	</package>
+	<package name="com.nearme.statistics.rom">
+	</package>
+	<package name="com.oppo.engineermode">
+	</package>
+	<package name="com.heytap.wearable.flashlight">
+	</package>
+	<package name="com.heytap.wearable.daily">
+	</package>
+	<package name="com.heytap.wearable.health">
+	</package>
+	<package name="com.heytap.wearable.heartrate">
+	</package>
+	<package name="com.oppo.lfeh">
+	</package>
+	<package name="com.heytap.wearable.logkit">
+	</package>
+	<package name="com.heytap.wearable.mculinkservice">
+	</package>
+	<package name="com.heytap.wearable.offload">
+	</package>
+	<package name="com.heytap.wearable.oxygen">
+	</package>
+	<package name="com.oplus.postmanservice">
+	</package>
+	<package name="com.heytap.wearable.powermanager">
+	</package>
+	<package name="com.heytap.wearable.relax">
+	</package>
+	<package name="com.oplus.wearable.setupwizard">
+	</package>
+	<package name="com.heytap.wearable.sleep">
+	</package>
+	<package name="com.heytap.wearable.sports">
+	</package>
+	<package name="com.heytap.wearable.stress">
+	</package>
+	<package name="com.heytap.wearable.weather">
+	</package>
+	<package name="com.android.networkstack.inprocess">
+	</package>
+	<package name="com.android.networkstack.tethering.inprocess">
+	</package>
+	<package name="com.android.inputdevices">
+	</package>
+	<package name="com.android.keychain">
+	</package>
+	<package name="com.android.localtransport">
+	</package>
+	<package name="com.android.managedprovisioning">
+	</package>
+	<package name="com.google.android.apps.maps">
+		<capability name="wearable_navigation"/>
+	</package>
+	<package name="com.android.providers.media.module">
+	</package>
+	<package name="com.android.providers.media">
+	</package>
+	<package name="com.oplus.wearable.media.sessions">
+	</package>
+	<package name="com.android.mms.service">
+	</package>
+	<package name="com.google.android.clockwork.modes">
+	</package>
+	<package name="com.android.mtp">
+	</package>
+	<package name="com.google.android.clockwork.nfc">
+	</package>
+	<package name="com.android.ondevicepersonalization.services">
+	</package>
+	<package name="com.oplus.stdid">
+	</package>
+	<package name="com.google.android.apps.wearable.retailattractloop">
+	</package>
+	<package name="com.android.pacprocessor">
+	</package>
+	<package name="com.oplus.parentalcontrolmode">
+	</package>
+	<package name="com.android.captiveportallogin">
+	</package>
+	<package name="com.google.android.apps.messaging">
+		<capability name="wearable_node"/>
+	</package>
+	<package name="com.google.android.apps.walletnfcrel">
+	</package>
+	<package name="com.android.vending">
+		<capability name="wearsky_standalone_installed"/>
+	</package>
+	<package name="com.android.proxyhandler">
+	</package>
+	<package name="com.android.sdksandbox">
+	</package>
+	<package name="com.android.se">
+	</package>
+	<package name="com.android.connectivity.resources">
+	</package>
+	<package name="com.android.uwb.resources">
+	</package>
+	<package name="com.android.wifi.resources">
+	</package>
+	<package name="com.android.providers.settings">
+	</package>
+	<package name="com.android.soundpicker">
+	</package>
+	<package name="com.android.statementservice">
+	</package>
+	<package name="com.google.android.marvin.talkback">
+	</package>
+	<package name="com.android.phone">
+	</package>
+	<package name="com.android.server.telecom">
+	</package>
+	<package name="com.android.providers.telephony">
+	</package>
+	<package name="com.android.traceur">
+	</package>
+	<package name="com.android.providers.userdictionary">
+	</package>
+	<package name="com.oplus.wearos.watchface.album">
+	</package>
+	<package name="com.google.android.inputmethod.latin">
+	</package>
+	<package name="com.google.android.gsmediator">
+	</package>
+	<package name="com.google.android.wearable.healthservices">
+	</package>
+	<package name="com.google.wear.services">
+	</package>
+	<package name="com.android.wifi.dialog">
+	</package>
+	<package name="com.oplus.wifitest.wifirf">
+	</package>
+	<package name="com.google.android.apps.youtube.music">
+	</package>
+	<package name="android">
+	</package>
+	<package name="wear">
+	</package>
+	<package name="com.android.wearable.resources">
+	</package>
+</wear_capabilities>

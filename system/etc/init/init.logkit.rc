@@ -1,0 +1,210 @@
+#/***********************************************************
+#** Copyright (C), 2008-2019, OPPO Mobile Comm Corp., Ltd.
+#** WEAROS_EDIT
+#** File: init.logkit.rc
+#** Description: put this file into /vendor/etc/init/, then
+#**              process 'init' will load&parse the file.
+#** Version: 1.0
+#** Date : 2019/07/15
+#** Author: Bo.Wu@Wear.Android.Init
+#**
+#** ---------------------Revision History: ---------------------
+#**  <author>     <data>    <version >    <desc>
+#**    Bo.Wu     2019/07/15    1.0     build this module
+#** zhangxiaowei 2019/07/19    1.1     Add for Logkit
+#** zhangxiaowei 2019/09/10    1.2     fixed issue
+#****************************************************************/
+
+
+service logcatsdcard /system/bin/sh /system/bin/autochmod.sh "main"
+    user root
+    disabled
+    seclabel u:r:autochmod:s0
+
+service logcatradio /system/bin/sh /system/bin/autochmod.sh "radio"
+    user root
+    disabled
+    seclabel u:r:autochmod:s0
+
+service logcatevent /system/bin/sh /system/bin/autochmod.sh "event"
+    user root
+    disabled
+    seclabel u:r:autochmod:s0
+
+service logcatkernel /system/bin/sh /system/bin/autochmod.sh "kernel"
+    user root
+    disabled
+    seclabel u:r:autochmod:s0
+
+service tcpdump /system/bin/sh /system/bin/autochmod.sh "tcpdump"
+    disabled
+    seclabel u:r:autochmod:s0
+
+service modem /system/bin/sh /system/bin/autochmod.sh "modem"
+    class core
+    user root
+    disabled
+    oneshot
+    seclabel u:r:autochmod:s0
+
+service modem_vendor /vendor/bin/diag_mdlog -f /data/oppo_log/Diag.cfg -o /data/oppo_log/${sys.wear.logkit.logtime}/modem -s ${vendor.logkit.modem.size} -n ${vendor.logkit.modem.count}  -c
+    class core
+    user root
+    disabled
+    oneshot
+    seclabel u:r:autochmod_vendor:s0
+
+service logkit_modem_stop /system/bin/sh /system/bin/autochmod.sh "modem_stop"
+    class core
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service copylog /system/bin/sh /system/bin/autochmod.sh "copylog"
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service clean_history_log /system/bin/sh /system/bin/autochmod.sh cleanlog history
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service clean_cache_log /system/bin/sh /system/bin/autochmod.sh cleanlog cache
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service save_ps /system/bin/sh /system/bin/autochmod.sh dump_system_state ps
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service save_top /system/bin/sh /system/bin/autochmod.sh dump_system_state top
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service save_services /system/bin/sh /system/bin/autochmod.sh dump_system_state service_list
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service save_dumpsys /system/bin/sh /system/bin/autochmod.sh dump_system_state dumpsys
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service save_dumpstate /system/bin/sh /system/bin/autochmod.sh dump_system_state dumpstate
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service save_storage /system/bin/sh /system/bin/autochmod.sh dump_system_state storage
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service save_bugreport /system/bin/sh /system/bin/autochmod.sh dump_system_state bugreport
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service settplevel /system/bin/sh /system/bin/autochmod.sh "settplevel"
+    user root
+    disabled
+    oneshot
+    seclabel u:r:autochmod:s0
+
+service init_logkit /system/bin/sh /system/bin/autochmod.sh "init_logkit"
+    user system
+    disabled
+    oneshot
+    seclabel u:r:autochmod:s0
+
+service onboot_logkit /system/bin/sh /system/bin/autochmod.sh "onboot_logkit"
+    user root
+    disabled
+    oneshot
+    seclabel u:r:autochmod:s0
+
+service heypower_bugreport /system/bin/sh /system/bin/autochmod.sh "heypower_bugreport"
+    user root
+    disabled
+    oneshot
+    seclabel u:r:dumpstate:s0
+
+service hiderecord /system/bin/sh /system/bin/autochmod.sh "hiderecord"
+    user root
+    disabled
+    oneshot
+    seclabel u:r:autochmod:s0
+
+on property:sys.boot_completed=1
+    start onboot_logkit
+
+on property:persist.sys.oppo.collectlog.start=true
+    start logcatsdcard
+    start logcatradio
+    start logcatevent
+    start logcatkernel
+
+on property:persist.sys.collectlog.tcpdump=true
+    start tcpdump
+
+on property:persist.sys.collectlog.modem=true
+    start modem
+
+on property:persist.sys.collectlog.copy=true
+    start copylog
+
+on property:persist.sys.oppo.collectlog.start=false
+    stop logcatsdcard
+    stop logcatradio
+    stop logcatevent
+    stop logcatkernel
+
+on property:persist.sys.collectlog.tcpdump=false
+    stop tcpdump
+
+on property:sys.shutdown.start=1
+    start logkit_modem_stop
+
+on property:persist.sys.collectlog.modem=false
+    start logkit_modem_stop
+
+on property:persist.sys.collectlog.copy=false
+    stop copylog
+
+on property:persist.sys.collectlog.tplevel=*
+    start settplevel
+
+on property:sys.collectlog.charge=*
+    write /sys/module/qpnp_smblite_main/parameters/charger_log_enable ${sys.collectlog.charge}
+
+on property:persist.vendor.sys.ssr.enable_ramdumps_log=1
+    setprop persist.vendor.ssr.enable_ramdumps 1
+    setprop persist.vendor.sys.ssr.enable_subsys 1
+    setprop persist.vendor.sys.ap.enable_ramdumps 1
+
+on property:persist.vendor.sys.ssr.enable_ramdumps_log=0
+    setprop persist.vendor.ssr.enable_ramdumps 0
+    setprop persist.vendor.sys.ssr.enable_subsys 3
+    setprop persist.vendor.sys.ap.enable_ramdumps 0
+
+on post-fs-data
+    start init_logkit
+    mkdir /data/oppo_log 0777 system system
+    mkdir /data/anr/power 0777 system system
+

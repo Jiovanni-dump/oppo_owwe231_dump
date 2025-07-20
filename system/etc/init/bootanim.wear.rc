@@ -1,0 +1,4 @@
+
+on post-fs-data
+    # Init bootanim time data folders.
+    mkdir /data/bootanim/time 0755 system system

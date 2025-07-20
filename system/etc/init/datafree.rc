@@ -1,0 +1,11 @@
+#ansheng.ma@Framework.Stability data no space cannot boot 2023/11/28
+service datafree /system/bin/datafree
+    class main
+    oneshot
+
+on property:sys.oplus.service.datafree.enable=1
+    start datafree
+
+on property:sys.oplus.service.datafree.enable=0
+    stop datafree
+#endif /* OPLUS_FEATURE_DATAFREE */

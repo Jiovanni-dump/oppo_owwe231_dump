@@ -1,0 +1,2 @@
+
+com.android.tethering𫏢:libnetd_updatable.soBlibandroid.soBlibc.soBlibdl.soB	liblog.soBlibm.soBlibnativehelper.soJ>libandroid_net_connectivity_com_android_net_module_util_jni.soJ libframework-connectivity-jni.soJ)libframework-connectivity-tiramisu-jni.soJlibservice-connectivity.so

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<permissions>
+    <feature name="oplus.wear.product.wearos" />
+    <feature name="oplus.wear.product.24960" />
+    <feature name="oplus.wear.product.bagel" />
+    <feature name="oplus.wear.screen.round" />
+    <feature name="oplus.wear.support.highvoltagemotor" />
+    <feature name="oplus.wear.support.oneplus.product" />
+    <feature name="oplus.wear.lock.mcu.support" />
+    <feature name="oplus.wear.parentalcontrolmode.enabled" />
+</permissions>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<!--
+/***********************************************************
+** Copyright (C), 2008-2019, OPPO Mobile Comm Corp., Ltd.
+** WEAROS_EDIT
+** File: default_permission.xml
+** Description: grant default permission
+** Version: 1.0
+** Date : 2019/09/11
+** Author: zhangxiaowei@Wear.Android.Framework.Permission
+**
+** ****************** Revision History: *******************
+**  <author>     <data>    <version >   <desc>
+** zhangxiaowei  2019/09/11   1.0     build this module
+** zhangxiaowei  2019/10/09   1.1     add app
+****************************************************************/
+-->
+
+<DefaultPermission>
+    <package name="com.heytap.wearable.health">
+        <permission name="android.permission.BODY_SENSORS" fix="false"/>
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fix="false"/>
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fix="false"/>
+        <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" fix="false"/>
+    </package>
+    <package name="com.google.android.apps.maps">
+        <permission name="android.permission.POST_NOTIFICATIONS" fix="false"/>>
+    </package>
+    <package name="com.google.android.apps.walletnfcrel">
+        <permission name="android.permission.POST_NOTIFICATIONS" fix="false"/>>
+    </package>
+</DefaultPermission>

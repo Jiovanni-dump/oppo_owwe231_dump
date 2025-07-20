@@ -1,0 +1,52 @@
+#***********************************************************
+#* Copyright (C), 2008-2021, OPPO Mobile Comm Corp., Ltd.
+#* WEAROS_EDIT
+#* File: preset.rc
+#* Description: rc file
+#* Version: 1.0
+#* Date : 2021/02/20
+#* Author: Chen.long@Wear.Android.Framework.PresetApp
+#*
+#* ---------------------Revision History: ---------------------
+#*  <author>      <date>    <version >   <desc>
+#*  chenlong    2021/02/20     1.0     build this module
+#***************************************************************/
+
+service preset /system/bin/sh /system/bin/preset.sh "preset"
+    user system
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:wear_preset:s0
+
+service preset_oppotoapp /system/bin/sh /system/bin/preset.sh "oppotoapp"
+    user system
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:wear_preset:s0
+
+service preset_oneplustoapp /system/bin/sh /system/bin/preset.sh "oneplustoapp"
+    user system
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:wear_preset:s0
+
+on property:sys.preset.replace=true
+    start preset
+
+on property:sys.preset.replace=timeout
+    stop preset
+
+on property:sys.preset.replaceoppo=true
+    start preset_oppotoapp
+
+on property:sys.preset.replaceoppo=timeout
+    stop preset_oppotoapp
+
+on property:sys.preset.replaceoneplus=true
+    start preset_oneplustoapp
+
+on property:sys.preset.replaceoneplus=timeout
+    stop preset_oneplustoapp
