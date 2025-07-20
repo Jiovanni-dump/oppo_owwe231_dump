@@ -1,0 +1,50 @@
+service vendor.oplus_agmplay_ftm /vendor/bin/agmplay /vendor/oplus/media/oplus_ftm_smart_pa.wav D 0 -d 100 -i "MI2S-LPAIF_VA-RX-PRIMARY"
+    class main
+    user system
+    group system
+    disabled
+    oneshot
+
+service system.oplus_audio_switch_sdm /system/bin/tinymix "TFA98XX Audio Switch" "sdm"
+    class main
+    user system
+    group system
+    disabled
+    oneshot
+
+on property:vendor.oplus_ftm_helper.agmplay=start
+    start vendor.oplus_agmplay_ftm
+
+on property:vendor.oplus_ftm_helper.agmplay=stop
+    stop vendor.oplus_agmplay_ftm
+
+on property:init.svc.vendor.oplus_agmplay_ftm=running
+    setprop vendor.oplus_ftm_helper.agmplay running
+
+on property:init.svc.vendor.oplus_agmplay_ftm=stopped
+    setprop vendor.oplus_ftm_helper.agmplay stopped
+
+on property:vendor.oplus_ftm_helper.audio_switch=sdm
+    setprop vendor.oplus_ftm_helper.audio_switch null
+    start system.oplus_audio_switch_sdm
+
+on property:vendor.oplus_ftm_helper.esleep=1
+    chown root root /sys/power/wakeup_count
+    write /sys/kernel/debug/regmap/spmi0-00/address 0x2846
+    write /sys/kernel/debug/regmap/spmi0-00/count 1
+    write /sys/kernel/debug/regmap/spmi0-00/data 0
+    write /sys/power/wake_unlock 1
+    setprop vendor.oplus_ftm_helper.esleep 0
+
+on property:vendor.oplus_ftm_helper.esleep=2
+    write /sys/power/mem_sleep s2idle
+    write /sys/power/state mem
+    setprop vendor.oplus_ftm_helper.esleep 0
+
+on property:vendor.oplus_ftm_helper.shutdown=1
+    setprop sys.powerctl shutdown
+    setprop vendor.oplus_ftm_helper.shutdown 0
+
+on property:ro.minui.pixel_format=*
+    setprop ro.oplus.minui.pixel_format ${ro.minui.pixel_format}
+

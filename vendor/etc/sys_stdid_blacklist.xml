@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter-conf>
+	<version>20230606</version>
+	<isOpen>1</isOpen>
+	<filter-name>sys_stdid_blacklist</filter-name>
+
+	<!--The maximum number of channels that a single application can create, the minimum is 100-->
+	<max-channels>1000</max-channels>
+
+	<stdid_guid>
+		<guid_pkg>com.oplus.finddeviceservice</guid_pkg>
+		<guid_pkg>com.heytap.wearable.ota</guid_pkg>
+		<guid_pkg>com.heytap.wearable.romupdate</guid_pkg>
+		<guid_pkg>com.heytap.msp.watch</guid_pkg>
+		<guid_pkg>com.heytap.wearable.findwatchservice</guid_pkg>
+	</stdid_guid>
+	<stdid_apid>
+		<apid_pkg>com.heytap.msp.watch</apid_pkg>
+	</stdid_apid>
+
+	<stdid_verify>
+		<pkg_sign pkg_name="com.oplus.finddeviceservice">
+			<sign_info name="com.oplus.finddeviceservice" sign="e4d63fcc5ad7be170b3f97afb2d031e3"/>
+		</pkg_sign>
+		<pkg_sign pkg_name="com.heytap.wearable.ota">
+			<sign_info name="com.heytap.wearable.ota" sign="7980363f7751c3c5c39a7e2be8385269"/>
+		</pkg_sign>
+		<pkg_sign pkg_name="com.heytap.wearable.romupdate">
+			<sign_info name="com.heytap.wearable.romupdate" sign="7980363f7751c3c5c39a7e2be8385269"/>
+		</pkg_sign>
+		<pkg_sign pkg_name="com.heytap.msp.watch">
+			<sign_info name="com.heytap.msp.watch" sign="c44ddd883807f4f97e75b47a2584f6b1"/>
+		</pkg_sign>
+		<pkg_sign pkg_name="com.heytap.wearable.findwatchservice">
+			<sign_info name="com.heytap.wearable.findwatchservice" sign="9640cda73b984fb9b2dfc08a54dea1c8"/>
+		</pkg_sign>
+	</stdid_verify>
+</filter-conf>

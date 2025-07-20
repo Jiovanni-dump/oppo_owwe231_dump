@@ -1,0 +1,9 @@
+service vendor.healthservices-hal-1-0 /vendor/bin/hw/vendor.google_clockwork.healthservices@1-service
+    class hal
+    user system
+    group system
+    file /dev/kmsg w
+
+on post-fs-data
+    chmod 0666 /dev/whs
+    chown system /dev/whs

@@ -1,0 +1,33 @@
+service vendor.oplus_broadcom_wlan_diag /vendor/bin/oplus_broadcom_wlan_diag
+    class main
+    user system
+    group system diag
+    disabled
+    oneshot
+
+on property:sys.usb.config=diag,adb
+    start vendor.oplus_broadcom_wlan_diag
+
+service svc_wifi_disable /system/bin/sh /system/bin/svc wifi disable
+    class late_start
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:shell:s0
+
+service svc_bt_disable /system/bin/sh /system/bin/svc bluetooth disable
+    class late_start
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:shell:s0
+
+on property:vendor.oplus.svc.wifi.enable=0
+    start svc_wifi_disable
+    setprop vendor.oplus.svc.wifi.enable 2
+
+on property:vendor.oplus.svc.bt.enable=0
+    start svc_bt_disable
+    setprop vendor.oplus.svc.bt.enable 2

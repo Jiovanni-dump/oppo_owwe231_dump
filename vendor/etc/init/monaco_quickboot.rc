@@ -1,0 +1,32 @@
+on property:vendor.keymaster.quickboot=false
+    stop vendor.keymaster-4-1
+    stop keystore2
+
+on property:vendor.keymint.quickboot=false
+    stop vendor.keymint-qti
+    stop vendor.keymint-strongbox
+    stop keystore2
+
+on property:vendor.gatekeeper.quickboot=false
+    stop gatekeeper-1-0
+    stop gatekeeperd
+
+on property:vendor.keymaster.quickboot=true
+    start vendor.keymaster-4-1
+    start keystore2
+
+on property:vendor.keymint.quickboot=true
+    start vendor.keymint-qti
+    start vendor.keymint-strongbox
+    start keystore2
+
+on property:vendor.gatekeeper.quickboot=true
+    start gatekeeper-1-0
+    start gatekeeperd
+
+on property:vendor.secure_element.quickboot=true
+    stop qti_esepowermanager_service_1_1
+    start qti_esepowermanager_service_1_1
+    stop secureelement-hal_1_2
+    start secureelement-hal_1_2
+

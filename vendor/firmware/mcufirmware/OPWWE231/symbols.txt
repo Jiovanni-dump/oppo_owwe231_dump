@@ -1,0 +1,11 @@
+traced_psp	0x20005384
+pxCurrentTCB	0x200058e4
+xTickCount	0x200058fc
+dump_log_table	0x2002b760
+fault_lr	0x2002b870
+fault_psp	0x2002b874
+fault_sp	0x2002b878
+_log_fifo	0x2002fbc0
+oplus_dump_regs	0x20033dcc
+regs	0x20033df4
+__StackTop	0x20061000

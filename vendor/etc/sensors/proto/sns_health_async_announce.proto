@@ -1,0 +1,42 @@
+// @file sns_health_async_announce.proto
+//
+// Defines standard message types for health_async_announce sensor
+//
+// Copyright (c) 2022-2023 Qualcomm Technologies, Inc.
+// All Rights Reserved.
+// Confidential and Proprietary - Qualcomm Technologies, Inc.
+
+// Health Async Announce Sensor sends events on which
+// HAL is expected to trigger action or handle its state
+
+// Sensor Attribute Requirements:
+// SNS_STD_SENSOR_ATTRID_TYPE: "health_async_announce"
+// SNS_STD_SENSOR_ATTRID_STREAM_TYPE: SNS_STD_SENSOR_STREAM_TYPE_ON_CHANGE
+
+syntax = "proto2";
+import "nanopb.proto";
+import "sns_std_type.proto";
+import "sns_std_sensor.proto";
+
+enum sns_health_async_announce_msgid {
+  option (nanopb_enumopt).long_names = false;
+  SNS_HEALTH_ASYNC_ANNOUNCE_MSGID_SNS_EVENT = 1028;
+}
+
+enum sns_health_async_announce_event_type {
+  option (nanopb_enumopt).long_names = false;
+  SNS_HEALTH_ASYNC_ANNOUNCE_EVENT_TYPE_ON_GOAL = 0;
+  SNS_HEALTH_ASYNC_ANNOUNCE_EVENT_TYPE_ACK     = 1;
+  SNS_HEALTH_ASYNC_ANNOUNCE_EVENT_TYPE_LOCATION_FIX_STATUS_UPDATE = 2;
+}
+
+message sns_health_async_announce_ack_event {
+  required fixed32 metric_id = 1;
+  required fixed32 msg_id = 2;
+  required fixed32 status = 3;
+}
+
+message sns_health_async_announce_event {
+  required sns_health_async_announce_event_type event_type = 1 [default = SNS_HEALTH_ASYNC_ANNOUNCE_EVENT_TYPE_ON_GOAL];
+  optional bytes payload = 2;
+}

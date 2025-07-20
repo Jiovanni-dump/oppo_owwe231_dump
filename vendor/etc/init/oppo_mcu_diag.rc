@@ -1,0 +1,11 @@
+service vendor.oppo_mcu_diag /vendor/bin/oppo_mcu_diag
+    class main
+    user system
+    group system
+    disabled
+    oneshot
+
+on property:sys.usb.config=diag,adb
+    start vendor.oppo_mcu_diag
+
+

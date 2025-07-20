@@ -1,0 +1,58 @@
+##################################################################################
+### VENDOR_EDIT, OPPO All rights reserved.
+###
+### File: - init.oppo.hal.rc
+### Author: Hailong.Ma@BSP.system
+###
+### ------------------------------- Revision History: ----------------------------
+### <author>                        <data>       <version>   <desc>
+### ------------------------------------------------------------------------------
+### Hailong.Ma@BSP.system         2020-07-28                Create this file
+##################################################################################
+on post-fs-data
+    chmod 0664 /dev/std_sns
+    chown system /dev/std_sns
+    chmod 0660 /dev/mcu_factory
+    chown system system /dev/mcu_factory
+
+on boot
+    chown root system /sys/devices/platform/soc/4a84000.i2c/i2c-1/1-0024/always_active_mode
+    chown root system /sys/devices/platform/soc/4a84000.i2c/i2c-1/1-0024/easy_wakeup_enable
+    chown root system /sys/devices/platform/soc/4a84000.i2c/i2c-1/1-0024/large_tp_enable
+    chown root system /sys/devices/platform/soc/4a84000.i2c/i2c-1/1-0024/cmcp_test
+    chown root system /sys/devices/platform/soc/4a84000.i2c/i2c-1/1-0024/ic_ver
+    chown root system /sys/devices/platform/soc/4a84000.i2c/i2c-1/1-0038/fts_shutdown_mode
+    chown root system /proc/touchpanel/baseline_result
+    chown root system /proc/touchpanel/baseline_test
+    chown root system /proc/touchpanel/check_connection
+    chown root system /proc/touchpanel/debug_level
+    chown root system /proc/touchpanel/devinfo
+    chown root system /proc/touchpanel/gesture_mode_en
+
+on boot
+    chown system system /proc/oplusShutdown/enable_ship_mode
+    chmod 0666 /proc/oplusShutdown/enable_ship_mode
+
+on property:ro.debuggable=1
+    write /sys/class/ocm/log 27
+
+on boot
+    chmod 0666 /sys/class/backlight/panel0-backlight/brightness
+
+#power off tp when sys.oplus.touchpanel.power_off=1
+on property:sys.oplus.touchpanel.power_off=1
+    write /sys/bus/i2c/drivers/cyttsp5_i2c_adapter/1-0024/force_power_off 1
+    write /sys/bus/i2c/drivers/fts_ts/1-0038/fts_force_power_off 1
+    setprop sys.oplus.touchpanel.power_off 0
+
+on property:sys.oplus.touchpanel.power_connect=1
+    write /sys/bus/i2c/drivers/fts_ts/1-0038/fts_charger_mode 1
+    setprop sys.oplus.touchpanel.power_connect -1
+
+on property:sys.oplus.touchpanel.power_connect=0
+    write /sys/bus/i2c/drivers/fts_ts/1-0038/fts_charger_mode 0
+    setprop sys.oplus.touchpanel.power_connect -1
+
+on property:persist.oplus.ocm.log=*
+    write /sys/class/ocm/log ${persist.oplus.ocm.log}
+

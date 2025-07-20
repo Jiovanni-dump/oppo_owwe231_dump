@@ -1,0 +1,57 @@
+service openocd /vendor/bin/logwrapper /vendor/bin/openocd  -f  /vendor/etc/openocd.cfg
+    seclabel u:r:openocd:s0
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+on property:debug.openocd=start
+   start openocd
+
+on property:debug.openocd=stop
+   stop openocd
+
+service dump_mcu_irq /vendor/bin/dump_mcu_irq.sh
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+on property:debug.dump_mcu_irq=start
+   start dump_mcu_irq
+
+service dump_mcu /vendor/bin/logwrapper /vendor/bin/dump_mcu_i2c.sh
+    seclabel u:r:dump_mcu_i2c:s0
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+on property:debug.dump_mcu=start
+   start dump_mcu
+
+service switch_mcu_jtag /vendor/bin/logwrapper /vendor/bin/switch_mcu_jtag.sh
+    seclabel u:r:switch_mcu_jtag:s0
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+on property:debug.switch_mcu_jtag=start
+   start switch_mcu_jtag
+
+service run_mcu_atcmd /vendor/bin/logwrapper /vendor/bin/run_mcu_atcmd.sh
+    seclabel u:r:run_mcu_atcmd:s0
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+on property:debug.run_mcu_atcmd=start
+   start run_mcu_atcmd
+

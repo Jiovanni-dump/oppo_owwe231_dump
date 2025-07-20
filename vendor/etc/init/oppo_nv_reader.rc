@@ -1,0 +1,6 @@
+service vendor.oppo_nv_reader /vendor/bin/oppo_nv_reader
+    class main
+    user system
+    group root system radio
+    oneshot
+

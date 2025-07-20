@@ -1,0 +1,68 @@
+
+service mcuupdater_all /vendor/bin/mcuupdater download all
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+service mcuupdater_m55 /vendor/bin/mcuupdater download m55
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+service mcuupdater_sshub /vendor/bin/mcuupdater download sshub
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+service mcuupdater_dsp /vendor/bin/mcuupdater download dsp
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+
+service mcuupdater_system_img /vendor/bin/mcuupdater download system_img
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+service mcuupdater_wf_img /vendor/bin/mcuupdater download wf_img
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+service mcuupdater /vendor/bin/mcuupdater produce all
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+service mcuupdater_setmcuverprop /vendor/bin/mcuupdater setmcuverprop
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+service mcuupdater_readback /vendor/bin/mcuupdater readback ${sys.mcuupdater.type} ${sys.mcuupdater.addr} ${sys.mcuupdater.length}
+    class core
+    user root
+    group root system media_rw
+    disabled
+    oneshot
+
+on post-fs-data && property:ro.oplus.mcutype=bes
+	chmod 0664 /dev/mcu_upgrade
+    start mcuupdater_setmcuverprop

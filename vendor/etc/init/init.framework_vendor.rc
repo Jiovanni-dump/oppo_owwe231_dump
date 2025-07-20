@@ -1,0 +1,91 @@
+on boot
+    chown root system /sys/class/drm/card0/sde-crtc-0/panel_rst
+    chmod 0660 /sys/class/drm/card0/sde-crtc-0/panel_rst
+    chown root system /proc/switch/lcd
+    chmod 0660 /proc/switch/lcd
+    chown root system /proc/switch/mt
+    chmod 0660 /proc/switch/mt
+    chown root system /proc/system_mode
+    chmod 0660 /proc/system_mode
+    chown root system /sys/power/quicksleep
+    chmod 0660 /sys/power/quicksleep
+    chown root system /sys/devices/platform/soc/soc:gpio_keys/disabled_keys
+    chmod 0660 /sys/devices/platform/soc/soc:gpio_keys/disabled_keys
+    chown root system /sys/devices/platform/soc/1c40000.qcom,spmi/spmi-0/0-00/1c40000.qcom,spmi:qcom,pm5100@0:pon_hlos@1300/disable_key
+    chmod 0660 /sys/devices/platform/soc/1c40000.qcom,spmi/spmi-0/0-00/1c40000.qcom,spmi:qcom,pm5100@0:pon_hlos@1300/disable_key
+    #Ansheng Ma@Wear.Android.Framework.Stability 2020-08-18 for get Log
+    chown system system /proc/startup_log
+    chmod 0666 /proc/startup_log
+    chown system system /proc/shutdown_detect
+    chmod 0666 /proc/shutdown_detect
+    #liang.lu@Wear.Android.Framework.AutoBrightness, 2022/03/29, Add for autobrightness
+    chown root system /sys/class/drm/card0/sde-crtc-0/dimming
+    chmod 0660 /sys/class/drm/card0/sde-crtc-0/dimming
+    chown root system /sys/class/drm/card0/sde-crtc-0/hbm
+    chmod 0660 /sys/class/drm/card0/sde-crtc-0/hbm
+    chown root system /sys/class/drm/card0/sde-crtc-0/aod_bl
+    chmod 0660 /sys/class/drm/card0/sde-crtc-0/aod_bl
+    chown root system /sys/class/drm/card0/sde-crtc-0/rotate
+    chmod 0660 /sys/class/drm/card0/sde-crtc-0/rotate
+    chown root system /sys/class/qcom-smb/chg_limit
+    chmod 0660 /sys/class/qcom-smb/chg_limit
+    chown root system /sys/bus/platform/drivers/sensor-hub/soc:oplus,sensor-hub/reset
+    chmod 0220 /sys/bus/platform/drivers/sensor-hub/soc:oplus,sensor-hub/reset
+    chown root system /sys/bus/platform/drivers/sensor-hub/soc:oplus,sensor-hub/power_mcu
+    chmod 0220 /sys/bus/platform/drivers/sensor-hub/soc:oplus,sensor-hub/power_mcu
+
+#ifdef VENDOR_EIDT
+#Zhiwen.Li@Wear.Android.Framework.AOD, 2022/05/29, Add for AOD
+    chown root system /sys/class/drm/card0/sde-crtc-0/panel_aod_sw
+    chmod 0660 /sys/class/drm/card0/sde-crtc-0/panel_aod_sw
+    chown root system /sys/class/drm/card0/sde-crtc-0/power_state
+    chmod 0660 /sys/class/drm/card0/sde-crtc-0/power_state
+    chown root system /sys/class/drm/card0/sde-crtc-0/force_pwroff
+    chmod 0660 /sys/class/drm/card0/sde-crtc-0/force_pwroff
+
+on property:sys.skip_black_frame=1
+    setprop vendor.display.skip_black_frame 1
+
+on property:sys.skip_black_frame=0
+    setprop vendor.display.skip_black_frame 0
+#endif
+
+# Ansheng.Ma@Framework.Stability, 2020/08/19, add for get startup hang log
+on property:sys.oplus.startup.handle_error=*
+    exec u:r:criticallog:s0 system system -- /system/bin/startup_log_helper.sh ${sys.oplus.startup.handle_error}
+
+on property:sys.boot_completed=1
+    setprop sys.oplus.startup.prepare boot_success
+    setprop sys.oplus.shutdown.prepare boot_success
+
+on property:sys.oplus.startup.prepare=*
+    exec u:r:criticallog:s0 system system -- /system/bin/startup_log_readback
+
+on property:sys.oplus.shutdown.prepare=*
+    exec u:r:criticallog:s0 system system -- /system/bin/shutdown_log_readback
+service start_poweron_log /system/bin/sh /system/bin/startup_log_helper.sh "start_poweron_log"
+    user system
+    disabled
+    oneshot
+    seclabel u:r:criticallog:s0
+
+service stop_poweron_log /system/bin/sh /system/bin/startup_log_helper.sh "stop_poweron_log"
+    user system
+    disabled
+    oneshot
+    seclabel u:r:criticallog:s0
+
+on property:sys.poweron.log.start=true
+    start start_poweron_log
+
+on property:sys.poweron.log.start=false
+    start stop_poweron_log
+
+service start_recovery_log /system/bin/sh /system/bin/startup_log_helper.sh "start_recovery_log"
+    user system
+    disabled
+    oneshot
+    seclabel u:r:criticallog:s0
+
+on property:sys.recovery.log.start=true
+    start start_recovery_log

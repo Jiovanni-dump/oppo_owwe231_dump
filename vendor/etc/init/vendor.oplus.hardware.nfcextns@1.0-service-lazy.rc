@@ -1,0 +1,8 @@
+
+service oplus_nfcextns_service /vendor/bin/hw/vendor.oplus.hardware.nfcextns@1.0-service-lazy
+    interface vendor.oplus.hardware.nfcextns@1.0::IOplusNfcExtns default
+    oneshot
+    disabled
+    class hal
+    user nfc
+    group nfc

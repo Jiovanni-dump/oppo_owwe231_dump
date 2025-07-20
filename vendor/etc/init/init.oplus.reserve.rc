@@ -1,0 +1,25 @@
+##################################################################################
+### VENDOR_EDIT, oplus All rights reserved.
+###
+### File: - init.oplus.reserve.rc
+###
+### ------------------------------- Revision History: ----------------------------
+### <author>                        <data>       <version>   <desc>
+### ------------------------------------------------------------------------------
+### 
+##################################################################################
+on post-fs-data
+  mkdir /mnt/vendor/oplusreserve/radio 0770 radio system
+  mkdir /mnt/vendor/oplusreserve/system 0770 system system
+  mkdir /mnt/vendor/oplusreserve/system/config 0770 system system
+  mkdir /mnt/vendor/oplusreserve/media 0777 system system
+  mkdir /mnt/vendor/oplusreserve/media/dropbox 0770 system system
+  mkdir /mnt/vendor/oplusreserve/media/log 0777 system system
+  mkdir /mnt/vendor/oplusreserve/media/log/usage 0770 system system
+  mkdir /mnt/vendor/oplusreserve/media/log/criticalLog 0770 system system
+  mkdir /mnt/vendor/oplusreserve/media/log/criticalLog/persist 0770 system system
+  mkdir /mnt/vendor/oplusreserve/media/log/criticalLog/cache 0770 system system
+  mkdir /mnt/vendor/oplusreserve/media/engineermode 0770 system system
+  mkdir /mnt/vendor/oplusreserve/media/ColorOS 0770 system system
+  mkdir /mnt/vendor/oplusreserve/media/Camera 0770 system system
+  restorecon_recursive /mnt/vendor/oplusreserve

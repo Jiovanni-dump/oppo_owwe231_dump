@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) 2022-2023, Qualcomm Technologies, Inc.
+All Rights Reserved.
+Confidential and Proprietary - Qualcomm Technologies, Inc.
+-->
+<configuration type="WHS_exercise_tracking">
+  <datatypes>
+    <!-- Note : Value in data_type_value attribute should be in hex only -->
+    <datatype type = "EXERCISE_STEP_COUNT" data_source = "whs.workout.steps" data_type_value = "0x1000" sensor_type = "pedometer"></datatype>
+    <!--
+    <datatype type = "GOLF_SHOT_DETECTION_TYPE_CLASSIFIED" data_source = "whs.workout.steps" data_type_value = "0xa007" sensor_type = "pedometer"></datatype>
+    <datatype type = "DEVICE_PRIVATE_MEASURE_BASE" data_source = "whs.workout.steps" data_type_value = "0x30000" sensor_type = "pedometer"></datatype>
+    <datatype type = "AUTO_STOP_DETECTION" data_source = "whs.workout.steps" data_type_value = "0xa004" sensor_type = "pedometer"></datatype>
+    -->
+  </datatypes>
+  <goals>
+    <goal datatype = "EXERCISE_STEP_COUNT" data_type_value = "0x1000">
+      <threshold type = "int" type_value = "10" comparison_type = "GREATER_THAN_OR_EQUAL"></threshold>
+      <threshold type = "int" type_value = "100" comparison_type = "LESS_THAN_OR_EQUAL"></threshold>
+    </goal>
+    <!--
+    <goal datatype = "DEVICE_PRIVATE_MEASURE_BASE" data_type_value = "0x30000">
+      <threshold type = "byte" type_value = "1,2,3,4" comparison_type = "GREATER_THAN_OR_EQUAL"></threshold>
+    </goal>
+    -->
+  </goals>
+
+  <autoExerciseType>
+    <!-- Note : sensor_type/sensor algo is required for sending startTracking and stopTracking request for AUTO_STOP_DETECTION and AUTO_PAUSE_DETECTION dataTypes-->
+    <exercisetype type = "WALKING" exercise_num = "01" sensor_type = "pedometer" auto_start = "true" auto_pause = "true" auto_stop = "true">
+      <datatype type = "EXERCISE_STEP_COUNT"></datatype>
+      <datatype type = "PACE"></datatype>
+    </exercisetype>
+    <exercisetype type = "RUNNING" exercise_num = "02" sensor_type = "pedometer" auto_start = "true" auto_pause = "false" auto_stop = "true">
+      <datatype type = "EXERCISE_STEP_COUNT"></datatype>
+      <datatype type = "HEART_RATE_BPM"></datatype>
+    </exercisetype>
+  </autoExerciseType>
+</configuration>
+
+<configuration type="WHS_passive_monitoring">
+  <datatypes>
+    <datatype type = "PASSIVE_STEP_COUNT" data_source = "whs.passive.count"data_type_value = "0x0001" sensor_type = "pedometer"></datatype>
+  </datatypes>
+  <goals>
+    <goal datatype = "PASSIVE_STEP_COUNT" data_type_value = "0x0001">
+      <threshold type = "int" type_value = "10" comparison_type = "GREATER_THAN_OR_EQUAL"></threshold>
+      <threshold type = "int" type_value = "100" comparison_type = "LESS_THAN_OR_EQUAL"></threshold>
+    </goal>
+  </goals>
+</configuration>
+
+<configuration type="WHS_sample_datatype">
+  <datatypes>
+    <datatype type = "LOCATION" data_source = "whs.location" data_type_value = "0x5001" sensor_type = "location"></datatype>
+  </datatypes>
+</configuration>
+
+<configuration type="WHS_oem_datatype">
+  <datatypes>
+  <!-- Note : OEM datatypes should be added here -->
+  <!--
+    <datatype type = "OEM_DATATYPE" data_type_value = "0x10001" sensor_type = "oemtype"></datatype>
+  -->
+  </datatypes>
+</configuration>

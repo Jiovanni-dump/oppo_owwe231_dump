@@ -1,0 +1,9 @@
+#on post-fs-data
+#    start commonsoft
+
+service commonsoft /vendor/bin/heycommonsoft
+    user root
+    class late_start
+    group root system
+    oneshot
+

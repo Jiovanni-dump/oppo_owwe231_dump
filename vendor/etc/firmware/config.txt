@@ -1,0 +1,3 @@
+wl_preinit=early_bcn_thresh=512
+bcn_timeout=8
+suspend_mode=0

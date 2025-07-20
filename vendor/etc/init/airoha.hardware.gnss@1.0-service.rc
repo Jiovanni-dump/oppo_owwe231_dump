@@ -1,0 +1,12 @@
+service vendor.gnss-1-0 /vendor/bin/hw/airoha.hardware.gnss@1.0-service
+    class hal
+    user gps
+    #disabled
+    group system gps radio
+
+on post-fs-data
+    #mkdir /data/oppo_log/gps 0770 gps system
+    #chmod 0770 /data/airoha
+    chmod 0664 /dev/gps_data
+    #chmod 0777 /dev/std_sns
+    chown gps /dev/gps_data

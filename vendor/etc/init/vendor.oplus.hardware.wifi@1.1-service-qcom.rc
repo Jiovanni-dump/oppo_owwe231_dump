@@ -1,0 +1,47 @@
+#ifdef OPLUS_FEATURE_WIFI_SNIFFER
+#LiangXiao@CONNECTIVITY.WIFI.BASE, 2020/03/24, Add for wifi sniffer service
+
+service oplus_wifi_service /vendor/bin/hw/vendor.oplus.hardware.wifi@1.1-service
+    class hal
+    user root
+    group wifi system vendor_qti_diag net_admin
+    capabilities NET_ADMIN NET_RAW SYS_MODULE
+
+service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
+    -O/data/vendor/wifi/wpa/sockets \
+    -g@android:wpa_wlan0
+    #   we will start as root and wpa_supplicant will switch to user wifi
+    #   after setting up the capabilities required for WEXT
+    #   user wifi
+    #   group wifi inet keystore
+    interface aidl android.hardware.wifi.supplicant.ISupplicant/default
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+on property:vendor.oplus.sniffer.on=2
+    chmod 0770 /data/vendor/wifi/snifferlog.tar.gzip
+    chown root system /data/vendor/wifi/snifferlog.tar.gzip
+
+on property:vendor.oplus.sniffer.on=1
+    chmod 0777 /data/vendor/wifi
+    chown root system /data/vendor/wifi/sniffer_log/
+
+on property:vendor.oplus.sniffer.on=0
+    chmod 0770 /data/vendor/wifi
+
+on boot
+    setprop wifi.interface wlan0
+    setprop wifi.direct.interface p2p-dev-wlan0
+
+on early-boot
+    exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.bcm.early_boot.sh
+
+on post-fs
+    write /sys/module/firmware_class/parameters/path /vendor/firmware_mnt/image,/vendor/firmware,/vendor/etc/firmware
+
+on property:ro.vendor.oplus.regionmark=*
+    exec u:r:oplus_wifi_service:s0 -- /vendor/bin/init.bcm.ccode.sh
+
+#endif /* OPLUS_FEATURE_WIFI_SNIFFER */

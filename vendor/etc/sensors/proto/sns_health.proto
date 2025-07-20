@@ -1,0 +1,134 @@
+// @file sns_health.proto
+//
+// Defines standard message types for health offload sensor
+//
+// Copyright (c) 2022-2023 Qualcomm Technologies, Inc.
+// All Rights Reserved.
+// Confidential and Proprietary - Qualcomm Technologies, Inc.
+syntax = "proto2";
+import "nanopb.proto";
+import "sns_std_type.proto";
+import "sns_std_sensor.proto";
+
+enum sns_health_msgid {
+  option (nanopb_enumopt).long_names = false;
+
+  SNS_HEALTH_MSGID_SNS_HEALTH_REQUEST      = 512;
+  SNS_HEALTH_MSGID_SNS_HEALTH_ACK_EVENT    = 769;
+  SNS_HEALTH_MSGID_SNS_HEALTH_OUTPUT_EVENT = 1024;
+}
+
+enum sns_health_request_type {
+  option (nanopb_enumopt).long_names = false;
+
+  SNS_HEALTH_REQUEST_TYPE_INVALID = 0;
+  // Creates a new instance of a datatype with given id.
+  SNS_HEALTH_REQUEST_TYPE_START = 1;
+  // Resumes the update of the datatype instances.
+  SNS_HEALTH_REQUEST_TYPE_RESUME = 2;
+  // Pauses the update of the datatype instances.
+  SNS_HEALTH_REQUEST_TYPE_PAUSE = 3;
+  // Destroys the datatype instance. Release the resources for that instance.
+  SNS_HEALTH_REQUEST_TYPE_STOP = 4;
+  // Set the config data based on the datatype.
+  SNS_HEALTH_REQUEST_TYPE_CONFIG_SET = 5;
+  // fetch the config data based on the datatype.
+  SNS_HEALTH_REQUEST_TYPE_CONFIG_GET = 6;
+  // Update the Offset of dataype instance
+  SNS_HEALTH_REQUEST_TYPE_OFFSET_SET = 7;
+  // Set a Goal against the Metric/datatype
+  SNS_HEALTH_REQUEST_TYPE_GOAL_ADD = 8;
+  // Remove a Goal against the metric/datatype
+  SNS_HEALTH_REQUEST_TYPE_GOAL_REMOVE = 9;
+  // Sets/Updates User Profile attributes to HEALTH sensor
+  SNS_HEALTH_REQUEST_TYPE_USER_PROFILE_SET = 10;
+  // heart rate alert parameters update request
+  SNS_HEALTH_REQUEST_TYPE_HR_ALERT_PARAMS_SET = 11;
+  // swimming pool length update request
+  SNS_HEALTH_REQUEST_TYPE_SWIMMING_POOL_LENGTH_SET = 12;
+  // OEM specific config set request
+  SNS_HEALTH_REQUEST_TYPE_OEM_CUSTOM_CONFIG_SET = 13;
+  // Request to start Auto start Detection
+  SNS_HEALTH_REQUEST_TYPE_AUTOSTART_DETECTION_ENABLE = 14;
+  // Request to stop Auto start Detection
+  SNS_HEALTH_REQUEST_TYPE_AUTOSTART_DETECTION_DISABLE = 15;
+  // swimming pool length update request
+  SNS_HEALTH_REQUEST_TYPE_GOLF_SHOT_DETECT_PARAMS_SET = 16;
+}
+
+enum sns_health_ack_type {
+  option (nanopb_enumopt).long_names = false;
+
+  SNS_HEALTH_ACK_TYPE_FAILURE        = 0;
+  SNS_HEALTH_ACK_TYPE_INVALID_PARAM  = 1;
+  SNS_HEALTH_ACK_TYPE_SUCCESS        = 2;
+}
+
+enum sns_health_event_notify {
+  option (nanopb_enumopt).long_names = false;
+
+  SNS_HEALTH_EVENT_NOTIFY_DISPLAY = 1;
+  SNS_HEALTH_EVENT_NOTIFY_APPS = 2;
+  SNS_HEALTH_EVENT_NOTIFY_ALL = 3;
+}
+
+enum sns_health_output_event_type {
+  option (nanopb_enumopt).long_names = false;
+
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_DATA = 0;
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_GOAL_GREATER = 1;
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_CONFIG_DATA = 2;   // Coupled with support for Config get request type
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_AUTO = 3; // Data type can be used to distinguish between auto start/stop/pause
+
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_FALL_DETECT = 4;
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_SLEEP_DETECT = 5;
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_WAKEUP_DETECT = 6;
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_LOW_HR_DETECT = 7;
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_ELEVATED_HR_DETECT = 8;
+
+  SNS_HEALTH_OUTPUT_EVENT_TYPE_GOAL_LESSER= 9;
+}
+
+enum sns_health_value_type {
+  option (nanopb_enumopt).long_names = false;
+  SNS_HEALTH_VALUE_TYPE_INT = 3;
+  SNS_HEALTH_VALUE_TYPE_FLOAT = 2;
+  SNS_HEALTH_VALUE_TYPE_BYTE_ARRAY = 1;
+};
+
+message sns_health_output_event_payload {
+  required uint64 ts_ticks = 1;
+  required fixed32 metric_id = 2;
+  optional sns_std_sensor_sample_status status = 3;
+  optional sns_health_data_payload event_data = 4;
+}
+
+message sns_health_data_payload {
+  required sns_health_value_type value_type = 1;
+  required bytes data = 2;
+}
+
+// Used by clients to configure the HEALTH Sensor for various metrics
+message sns_health_request {
+  required sns_health_request_type msg_id = 1;
+  required bytes req_payload = 2;
+  optional bytes sensor_config_data = 4; // user config
+  optional sns_health_data_payload data = 3;
+}
+
+// HEALTH output event
+// This event contains the formatted string output corresponding to the
+// metric requested by the client.
+message sns_health_output_event {
+  required sns_health_output_event_type event_type = 1;
+  required sns_health_event_notify notify_type = 2;
+  repeated sns_health_output_event_payload event_payload = 3;
+}
+
+// HEALTH acknowledge event
+// This event contains the status for the request sent from the client.
+message sns_health_ack_event {
+  required fixed32 metric_id = 1;
+  required sns_health_request_type msg_id = 2;
+  required sns_health_ack_type status = 3;
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<self_init_config>
+    <base_config name="IN" nv="1B" >
+          <core_property
+             ro.vendor.oplus.regionmark="IN"
+           />
+    </base_config>
+    <base_config name="CN" nv="97" >
+          <core_property
+             ro.vendor.oplus.regionmark="CN"
+           />
+    </base_config>
+    <base_config name="US" nv="A1" >
+          <core_property
+             ro.vendor.oplus.regionmark="US"
+           />
+    </base_config>
+    <base_config name="EUEX" nv="44" >
+          <core_property
+             ro.vendor.oplus.regionmark="EUEX"
+           />
+    </base_config>
+    <base_config name="APC" nv="A4" >
+          <core_property
+             ro.vendor.oplus.regionmark="APC"
+           />
+    </base_config>
+    <base_config name="UN" nv="E0" >
+          <core_property
+             ro.vendor.oplus.regionmark="UN"
+           />
+    </base_config>
+    <base_config name="ID" nv="33" >
+          <core_property
+             ro.vendor.oplus.regionmark="ID"
+           />
+    </base_config>
+    <base_config name="TW" nv="1A" >
+          <core_property
+             ro.vendor.oplus.regionmark="TW"
+           />
+    </base_config>
+    <base_config name="VN" nv="3C" >
+          <core_property
+             ro.vendor.oplus.regionmark="VN"
+           />
+    </base_config>
+    <base_config name="MY" nv="38" >
+          <core_property
+             ro.vendor.oplus.regionmark="MY"
+           />
+    </base_config>
+    <base_config name="DE" nv="88" >
+          <core_property
+             ro.vendor.oplus.regionmark="DE"
+           />
+    </base_config>
+</self_init_config>

@@ -1,0 +1,4 @@
+service oplus.transfer-1-0 /vendor/bin/hw/vendor-oplus-hardware-transfer@1.0-service
+    interface vendor.oplus.hardware.transfer@1.0::ITransfer ATMWiFiHidlServer
+    class main
+    disabled
