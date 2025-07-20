@@ -1,0 +1,134 @@
+#line 1 "device/google/clockwork/sepolicy/private/service_contexts"
+SystemSidekickService                                                   u:object_r:SidekickService_service:s0
+DisplayOffloadService                                                   u:object_r:DisplayOffload_service:s0
+HealthService                                                           u:object_r:HealthService_service:s0
+ModeManager                                                           u:object_r:ModeManager_service:s0
+ThermalObserver                                                         u:object_r:ThermalObserver_service:s0
+WearConfigManagerService                                                u:object_r:WearConfigManagerService_service:s0
+WearConnectivityService                                                 u:object_r:WearConnectivityService_service:s0
+WearDisplayService                                                      u:object_r:WearDisplayService_service:s0
+WearLeftyService                                                        u:object_r:WearLeftyService_service:s0
+WristOrientationService                                                 u:object_r:WristOrientationService_service:s0
+WearPowerService                                                        u:object_r:WearPowerService_service:s0
+activity_ambient                                                        u:object_r:system_app_service:s0
+dream_ambient                                                           u:object_r:system_app_service:s0
+wear.debug                                                              u:object_r:WearDebug_service:s0
+wear_service                                                            u:object_r:WearService_service:s0
+
+vendor.google_clockwork.healthservices.IHealthServices/default         u:object_r:hal_healthservices_service:s0
+android.frameworks.location.altitude.IAltitudeService/default          u:object_r:fwk_altitude_service:s0
+#line 1 "vendor/oppo_wear/frameworks/sepolicy/private/service_contexts"
+#***********************************************************
+#* Copyright (C), 2008-2020, OPPO Mobile Comm Corp., Ltd.
+#* VENDOR_EDIT
+#* File: service_contexts
+#* Description: wear frameworks selinux sepolicy
+#* Version: 1.0
+#* Date : 2020/02/25
+#* Author: zhangxiaowei@wear.Android.Framework.ExService
+#*
+#* ---------------------Revision History: ---------------------
+#*  <author>      <data>    <version >   <desc>
+#* zhangxiaowei 2020/02/25     1.0     build this module
+#***************************************************************/
+
+app.manager                               u:object_r:registry_service:s0
+wear.manager                              u:object_r:registry_service:s0
+bm.manager                                u:object_r:registry_service:s0
+dcs.manager                               u:object_r:registry_service:s0
+diag.manager                              u:object_r:registry_service:s0
+perf.manager                              u:object_r:registry_service:s0
+multimedia.manager                        u:object_r:registry_service:s0
+#line 1 "vendor/oppo_wear/frameworks/interfaces/dccservice/sepolicy/private/service_contexts"
+# Copyright (c) 2015, 2017, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of The Linux Foundation nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+deamonserver                               u:object_r:deamonserver_service:s0
+#line 1 "vendor/oppo_wear/apps/OppoEngineerMode/sepolicy/qcom/private/service_contexts"
+
+
+#ifdef VENDOR_EDIT
+#Jianrong.Zheng@PSW.AD.EngineeringMode.1071920, 2017/09/18, Add for oppo engineer service
+engineer                                  u:object_r:engineer_service:s0
+secrecy                                   u:object_r:secrecy_service:s0
+#endif VENDOR_EDIT
+
+#line 1 "vendor/oppo_wear/apks/prebuilt/HeyOffload/sepolicy/private/service_contexts"
+vendor.google_clockwork.offload.notification.INotificationOffload/default    u:object_r:notification_offload_service:s0
+#line 1 "device/qcom/sepolicy/monaco/generic/private/service_contexts"
+# Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of The Linux Foundation nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+cneservice                                           u:object_r:vendor_cne_service:s0
+com.qualcomm.qti.ustaservice.USTAServiceImpl         u:object_r:vendor_usta_app_service:s0
+dpmservice                                     u:object_r:vendor_dpmservice:s0
+MinkBinderSvc                                  u:object_r:vendor_MinkBinderSvc:s0
+vendor.perfservice                             u:object_r:vendor_perf_service:s0
+vendor.qdtservice                              u:object_r:vendor_qdt_service:s0
+sms-sec                                        u:object_r:radio_service:s0
+extphone                                       u:object_r:radio_service:s0
+qti.radio.extphone                             u:object_r:radio_service:s0
+com.qualcomm.location.izat.IzatService         u:object_r:vendor_izat_service:s0
+qti.security.seempspa                          u:object_r:vendor_seemp_service:s0
+vendor.audio.vrservice                         u:object_r:audioserver_service:s0
+com.qti.snapdragon.sdk.display.IColorService   u:object_r:vendor_color_service:s0
+wfdservice                                     u:object_r:vendor_wfdservice_service:s0
+wfdservice64                                   u:object_r:vendor_wfdservice_service:s0
+wigigp2p                                       u:object_r:vendor_wigigp2p_service:s0
+wigig                                          u:object_r:vendor_wigig_service:s0
+display.smomoservice                           u:object_r:surfaceflinger_service:s0
+vendor.vpsservice                              u:object_r:vendor_vps_service:s0
+vendor.qspmsvc                                 u:object_r:vendor_qspmsvc_service:s0
+nfc_settings                                   u:object_r:nfc_service:s0
+nfc.st_ext                                     u:object_r:nfc_service:s0
+vendor.qti.gnss.ILocAidlGnss/default           u:object_r:hal_gnss_service:s0
+vendor.qvirtmgr                                u:object_r:vendor_qvirtmgr_service:s0
+vendor.qti.qesdsys.IQesdSys/default            u:object_r:vendor_qesdk_service:s0
+vendor.qti.hardware.radio.atcmdfwd.IAtCmdFwd/AtCmdFwdAidl u:object_r:radio_service:s0

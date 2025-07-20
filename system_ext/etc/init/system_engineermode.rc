@@ -1,0 +1,111 @@
+
+on boot
+    symlink /mnt/vendor/persist /storage/persist
+
+on post-fs-data
+    mkdir /data/engineermode
+    chown system system /data/engineermode
+    chmod 0775 /data/engineermode
+    mkdir /data/theme_bak
+    chown system system /data/theme_bak
+    chmod 0777 /data/theme_bak
+    chown system system /cache/factory/sbl_memtest_result.txt
+    chown system system /cache/factory/dram_aging_user_result.txt
+    chown system system /cache/factory/flash_aging_result.txt
+    chown system system /sys/devices/platform/soc/4a84000.i2c/i2c-1/1-0079/input/input2/calibrate
+    chown system system /sys/devices/platform/soc/4a84000.i2c/i2c-1/1-0079/input/input2/cpi_resolution_x
+    chown system system /sys/class/drm/card0/sde-crtc-0/idle
+    chown system system /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/drm/card0/sde-crtc-0/idle
+    chown system system /sys/class/power_supply/battery/ship_mode
+    chown system system /proc/oplusShutdown/enable_ship_mode
+    chown system system /sys/kernel/debug/1-0024/mfg_test/cmcp_results
+
+service switchByMC /system/bin/sh /system/system_ext/bin/engineer_system_shell.sh switchEng "mc"
+    user root
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:engineer_system_daemon:s0
+
+service switchByFtm /system/bin/sh /system/system_ext/bin/engineer_system_shell.sh switchEng "ftm"
+    user root
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:engineer_system_daemon:s0
+
+on property:vendor.oppo.engineer.adb.flag=0
+    start switchByFtm
+
+on property:vendor.oppo.engineer.adb.flag=1
+    start switchByMC
+
+on property:vendor.oppo.engineer.adb.flag=2
+    setprop persist.sys.oppo.fromadbclear true
+
+on property:vendor.oppo.engineer.adb.flag=3
+    start switchByMC
+
+service cpustressAging /system/bin/sh /system/system_ext/bin/engineer_system_shell.sh startCpustressAging
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:engineer_system_daemon:s0
+
+service cacheAging /system/bin/sh /system/system_ext/bin/engineer_system_shell.sh startCacheAging
+    user root
+    disabled
+    oneshot
+    seclabel u:r:engineer_system_daemon:s0
+
+#Add for set media.stagefright.audio.deep(default_prop) in mmi speaker test
+on property:sys.media.stagefright.audio.deep=true
+    setprop media.stagefright.audio.deep true
+
+on property:sys.media.stagefright.audio.deep=false
+    setprop media.stagefright.audio.deep false
+
+on property:persist.vendor.otg.switch=true
+    write /sys/class/power_supply/usb/otg_switch 1
+
+on property:persist.vendor.otg.switch=false
+    write /sys/class/power_supply/usb/otg_switch 0
+
+on property:vendor.oppo.engineermode.chargeswitch=true
+    write /sys/class/power_supply/battery/mmi_charging_enable 1
+
+on property:vendor.oppo.engineermode.chargeswitch=false
+    write /sys/class/power_supply/battery/mmi_charging_enable 0
+
+on property:vendor.oppo.vulkan.switch=*
+    setprop persist.graphics.vulkan.disable ${vendor.oppo.vulkan.switch}
+
+on property:vendor.oppo.engineer.usb.config=*
+    setprop persist.vendor.usb.config ${vendor.oppo.engineer.usb.config}
+    setprop persist.sys.usb.config ${vendor.oppo.engineer.usb.config}
+    setprop persist.sys.usb.qmmi.func ${vendor.oppo.engineer.usb.config}
+
+on property:vendor.oppo.engineer.tcp.port=*
+    setprop service.adb.tcp.port ${vendor.oppo.engineer.tcp.port}
+
+service AccessCpuInfo /system/bin/sh /system/system_ext/bin/engineer_system_shell.sh accessCpuInfo
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:engineer_system_daemon:s0
+
+on property:sys.oppo.switch=false
+    write /proc/switch/lcd 0
+    #write /sys/devices/platform/soc/soc:gpio_keys/disabled_keys 59
+    #write /sys/bus/platform/devices/soc/200f000.qcom,spmi/spmi-0/spmi0-00/200f000.qcom,spmi:qcom,pm660@0:qcom,power-on@800/disable_key 1
+
+on property:sys.oppo.switch=true
+    write /proc/switch/lcd 1
+    #write /sys/devices/platform/soc/soc:gpio_keys/disabled_keys 0
+    #write /sys/bus/platform/devices/soc/200f000.qcom,spmi/spmi-0/spmi0-00/200f000.qcom,spmi:qcom,pm660@0:qcom,power-on@800/disable_key 0
+
+on property:sys.oppo.switch.mt=*
+    write /proc/switch/mt ${sys.oppo.switch.mt}
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wear_capabilities>
+	<package name="com.android.carrierconfig">
+	</package>
+	<package name="com.google.android.apps.wearable.systemui">
+	</package>
+	<package name="com.google.android.gsf">
+	</package>
+	<package name="com.android.nfc">
+	</package>
+	<package name="com.android.networkstack.inprocess.overlay">
+	</package>
+	<package name="com.android.wifi.resources.overlay">
+	</package>
+</wear_capabilities>

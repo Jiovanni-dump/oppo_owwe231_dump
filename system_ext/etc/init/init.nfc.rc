@@ -1,0 +1,15 @@
+#
+on property:persist.nfc.debug.log=true
+    setprop nfc.nxp_log_level_global 3
+    setprop nfc.debug_enabled 1
+
+on property:persist.ese.debug.log=true
+    setprop nfc.nxp_log_level_global 3
+    setprop vendor.ese.debug_enabled 1
+
+on property:sys.oppo.production.login.mode=true
+    setprop nfc.nxp_log_level_global 3
+    setprop vendor.ese.debug_enabled 1
+
+on property:persist.nfc.debug.log=*
+    setprop persist.nfc.debug_enabled ${persist.nfc.debug.log}
