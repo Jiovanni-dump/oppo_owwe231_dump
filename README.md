@@ -1,0 +1,14 @@
+# monaco-user 13 TWR7.231113.001 34 release-keys
+- manufacturer: oppo
+- platform: monaco
+- codename: OWWE231
+- flavor: monaco-user
+- release: 13
+- id: TWR7.231113.001
+- incremental: 34
+- tags: release-keys
+- fingerprint: OPPO/OWWE231/OWWE231:13/TWR7.231113.001.OWWE231_11_A.144.250623/01:user/release-keys
+- is_ab: false
+- brand: OPPO
+- branch: monaco-user-13-TWR7.231113.001-34-release-keys
+- repo: oppo_owwe231_dump
