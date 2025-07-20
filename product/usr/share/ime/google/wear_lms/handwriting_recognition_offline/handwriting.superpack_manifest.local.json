@@ -1,0 +1,42 @@
+{
+  "packs": [
+    {
+      "name": "pack_mapping_v1_lstm_20210322_offline",
+      "download_urls": [
+        "https://dl.google.com/handwriting/models/packmapping_release.20210322.pb.offline"
+      ],
+      "size": 141,
+      "md5_checksum": "eb59a501ed362fc0545c8dc25be73a5e"
+    },
+    {
+      "name": "qrnn_en_us_reco_20200318_fst_20191208_recospec_zip",
+      "download_urls": [
+        "https://dl.google.com/handwriting/models/qrnn.en_us.reco_20200318.fst_20191208.recospec.zip"
+      ],
+      "compressed_size": 2801,
+      "download_packing_scheme": "zip",
+      "size": 3929,
+      "md5_checksum": "0a40947fb7c5d5b640fa0457e9f61910"
+    },
+    {
+      "name": "en_us_20191208_compact_fst_zip",
+      "download_urls": [
+        "https://dl.google.com/handwriting/models/en_us.20191208.compact.fst.zip"
+      ],
+      "compressed_size": 10457976,
+      "download_packing_scheme": "zip",
+      "size": 21798892,
+      "md5_checksum": "9365701a75971698aad15cd3bf39ad93"
+    },
+    {
+      "name": "indy_lstm_latin_6x216_tflite_20191208_zip",
+      "download_urls": [
+        "https://dl.google.com/handwriting/models/indy_lstm.latin.6x216.tflite.20191208.zip"
+      ],
+      "compressed_size": 3370277,
+      "download_packing_scheme": "zip",
+      "size": 3992904,
+      "md5_checksum": "e42e3001fd6b917deaa20332d855d6d7"
+    }
+  ]
+}

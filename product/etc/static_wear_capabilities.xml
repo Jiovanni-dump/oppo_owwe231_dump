@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wear_capabilities>
+	<package name="com.google.android.wearable.protolayout.renderer">
+	</package>
+	<package name="com.google.android.wearable.overlay.home.heytap">
+	</package>
+	<package name="com.android.hotwordenrollment.okgoogle">
+	</package>
+	<package name="com.android.hotwordenrollment.xgoogle">
+	</package>
+	<package name="com.android.modulemetadata">
+	</package>
+	<package name="com.google.android.gms">
+		<capability name="wearable_rpc_support"/>
+		<capability name="fast_pair_support"/>
+	</package>
+	<package name="com.google.android.gms.dynamite_cronetdynamite">
+	</package>
+	<package name="com.google.android.gms.dynamite_dynamiteloader">
+	</package>
+	<package name="com.google.android.gms.dynamite_dynamitemodulesa">
+	</package>
+	<package name="com.google.android.gms.dynamite_dynamitemodulesc">
+	</package>
+	<package name="com.google.android.gms.dynamite_googlecertificates">
+	</package>
+	<package name="com.google.android.gms.dynamite_mapsdynamite">
+	</package>
+	<package name="com.google.android.wearable.app.overlay.sysui.default">
+	</package>
+</wear_capabilities>
